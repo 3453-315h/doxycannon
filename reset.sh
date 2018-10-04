@@ -9,8 +9,8 @@
 #	sed -i 's/up \/etc\/openvpn\/update-resolv-conf/up \/etc\/openvpn\/up.sh/g' *.ovpn
 #	sed -i 's/down \/etc\/openvpn\/update-resolv-conf/down \/etc\/openvpn\/down.sh/g' *.ovpn
 
-read -p "[+] Enter the number of profiles you want to use: " n
-read -p "[+] Enter the first two letters of a country: " country # ProtonVPN configuration specific
+read -r -p "[+] Enter the number of profiles you want to use: " n
+read -r -p "[+] Enter the first two letters of a country: " country # ProtonVPN configuration specific
 echo "[+] Bringing down the cannon..."
 ./doxycannon.py --down
 echo "[+] Removing current VPN profiles."
