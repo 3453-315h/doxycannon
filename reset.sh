@@ -71,3 +71,33 @@ echo "[*] Copying new profiles."; for i in $(ls configs/ | sort -R | grep "$c" |
 echo "[*] Building new configuration..."; $python ./doxycannon.py --build
 echo "[*] Ready, Aim, Fire!"; $python ./doxycannon.py --up
 $python ./doxycannon.py --single
+
+###
+#
+# Troubleshooting
+#
+# Most common issues are with OpenVPN failing to connect
+# due to incorrect credentials or an invalid config.
+#
+# Drop into a recently used doxycannon container and try
+# some of the troubleshooting steps below.
+#
+# See what interfaces have started. if tun0 is not listed,
+# there was an error starting a VPN connection
+# 	ip addr show
+#
+# See what ports have services bound to them. dante
+# should be listed here using port 1080/tcp
+#	ss -tlpn
+#
+# List running processes. you should see supervisor,
+# openvpn, and several entries from dante
+#	ps aux
+#
+# Tail the STDOUT of failing programs
+#	supervisorctl tail (openvpn|dante)
+#
+# Tail supervisord error logs
+#	tail /var/log/supervisord.log
+#
+###
